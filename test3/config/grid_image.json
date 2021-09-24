@@ -1,0 +1,115 @@
+{
+    "model_stats_params": {
+        "save_model": "models/grid_image",
+        "moving_average_length": 50,
+        "log_file_name": "grid_image",
+        "training_images": false
+    },
+    "grid_params": {
+        "tour_x_position": [
+            3, 4, 5, 6, 6, 
+            6, 7, 7, 8, 8, 
+            9, 10, 11, 11, 12,
+            12, 13, 14, 14, 15, 
+            15, 16, 17, 18, 18,
+            19, 20, 20, 21, 22,
+            23, 10, 14, 10, 11, 
+            11, 14, 15, 16, 17,
+            17, 18, 18, 19, 20,
+            21, 21, 22, 22, 22,
+            22, 23, 23, 24, 14, 
+            27, 28, 27, 28, 31
+        ],    
+        "tour_y_position": [
+            5, 5, 5, 5, 4, 
+            3, 3, 2, 2, 1, 
+            1, 1, 1, 2, 2, 
+            3, 3, 3, 4, 4,
+            5, 5, 5, 5, 6,
+            6, 6, 7, 7, 7, 
+            7, 8, 11, 9, 11, 
+            14, 14, 12, 12, 12, 
+            13, 13, 14, 14, 14, 
+            14, 13, 13, 12, 11, 
+            10, 10, 9, 9, 26, 
+            7, 7, 8, 8, 7
+        ], 
+        "tour_count_range": [
+            0,
+            26,
+            32,
+            60
+        ],
+        "movement_range": [
+            150,
+            200
+        ],
+        "start_end_area": [
+            0,
+            2
+        ],
+        "map_path": "res/cherwon_50.png",
+        "num_agents_range": [
+            1,
+            1
+        ],
+        "device_manager": {
+            "data_range": [
+                5.0,
+                5.0
+            ],
+            "fixed_tours": false,
+            "devices": {
+                "position": [
+                    0,
+                    0
+                ],
+                "data": 15.0,
+                "color": "blue"
+            }
+        },
+        "multi_agent": true
+    },
+    "reward_params": {
+        "boundary_penalty": 1.0,
+        "empty_battery_penalty": 300.0,
+        "movement_penalty": 0.1,
+        "tough_penalty": [
+            0.05,
+            0.25
+        ],
+        "tour_advant": 10.0,
+        "successful_landed": 100.0,
+        "initial_area_penalty": 1.0,
+        "destination_area": 0.6       
+    },
+    "trainer_params": {
+        "batch_size": 128,
+        "num_steps": 3e5,
+        "rm_pre_fill_ratio": 0.5,
+        "rm_pre_fill_random": true,
+        "eval_period": 5,
+        "rm_size": 50000,
+        "load_model": ""
+    },
+    "agent_params": {
+        "conv_layers": 2,
+        "conv_kernel_size": 5,
+        "conv_kernels": 16,
+        "hidden_layer_size": 256,
+        "hidden_layer_num": 3,
+        "learning_rate": 3e-05,
+        "alpha": 0.005,
+        "gamma": 0.95,
+        "soft_max_scaling": 0.1,
+        "global_map_scaling": 3,
+        "local_map_size": 17,
+        "print_summary": true,
+        "use_scalar_input": false,
+        "blind_agent": false
+
+    },
+    "physics_params": {
+        "comm_steps": 4
+    }
+}

@@ -1,3 +1,34 @@
+'test3 폴더'가 실제로 사용한 소스코드입니다.
+1. File
+config : training scenario parameter(체력, 관광지 등)를 포함한 json 파일
+logs : tensorflow로 훈련 과정, 평가 과정 기록(tensorboard로 확인)
+makeathon : 발표ppt
+models : grid_image_best(training 중, moving average = 50 기준, 완주성공이 가장 많이 되었을 때의 model weight 저장), grid_image_unfinished(training step 완주 시 model weight 저장)
+res : png파일로 만든 RGB 형태의 소이산 grid_image
+
+2. ipynb
+Agent : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Table of contents
 
 * [Introduction](#introduction)
