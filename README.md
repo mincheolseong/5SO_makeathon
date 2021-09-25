@@ -3,11 +3,63 @@
 config : training scenario parameter(체력, 관광지 등)를 포함한 json 파일
 logs : tensorflow로 훈련 과정, 평가 과정 기록(tensorboard로 확인)
 makeathon : 발표ppt
-models : grid_image_best(training 중, moving average = 50 기준, 완주성공이 가장 많이 되었을 때의 model weight 저장), grid_image_unfinished(training step 완주 시 model weight 저장)
+models : grid_image_best(training 중, moving average = 50 기준, 완주성공이 가장 많이 되었을 때의 model weight 저장), grid_image_unfinished(training step 완주 시 model weight 저장), eval할 때는 grid_image_best 사용
 res : png파일로 만든 RGB 형태의 소이산 grid_image
 
 2. ipynb
-Agent : 
+Agent : keras를 이용해 model layer 생성, model 구조, 학습 파라미터 등 설정
+
+BaseDisplay : RGB 정보로 grid image 생성, 에피소드 시작~종료 지점을 포함한 경로 도식
+
+BaseGrid : 체력정보포함(json file에도 동시에 포함됨), RGB정보에 대해 맵 정보 정의
+
+BaseState : RGB png file 경로 정의, RGB정보를 포함한 기본적인 state 상태 정의
+
+DeviceManager : device = tour, tour의 색깔, 최초 데이터 정의(IoTDevice 참고)
+
+Display : 한 에피소드 전체 정보(시작, 도착지점, grid_world, tour points, agent 이동 상태) 도식, Replaymemory에 저장된 1개의 batch(state, action, reward, next state 등)를 가져와서 input data로 활용
+
+Environment : training 정의(filling replay memory -> train_episode), training 과정 중에 test_episode 있는 이유 : 기본적인 training setting이 매 에피소드(or epoch)마다 다양한 시나리오 파라미터를 랜덤 선택해서 진행되기 때문에, 
+unusally easy conditions 발생 가능(e.g. 3개의 에피소드가 모두 agent가 최대 체력을 선택해서 진행)하기 때문에 multiple evalutions의 평균으로 agent의 학습 진도를 나타낼 수 있음
+
+Grid : tour_points의 좌표 정의(json file 동일), tour의 유형(자연, 인공, 모두) 정의
+
+GridActions : agent의 행동 경우 설정
+
+GridPhysics : agent의 물리적인 step 정의(행동에 따른 state 변화 : 출입금지지역, 도착지점, 힘든지역, 체력감소)
+
+GridRewards : agent를 원하는 방향으로 훈련시키기 위한 reward structure
+
+IoTDevice : tour 별로 최초 데이터 5(DeviceManager 참고)가 있는데, agent가 해당 좌표 이동 시, 데이터 5를 획득, 이 때 각 tour는 data = 0일 때만 positive reward 부여
+(data를 이용한 reward 설정 이유 : 만약 이렇게 하지 않으면, agent는 tour 좌표 이동 시 매 step마다 계속 positive reward를 받기 때문에 어느 tour position으로 이동하든 그곳에서부터 이동하지 않을 가능성이 매우 큼)
+
+main_mc : Evaluation using Monte Carlo analysis
+
+MainEnvironment : 현재까지 정의한 모든 모듈을 임포트해서 최종적인 step 등을 정의
+
+Map : RGB의 정보를 각각 이동불가지역, 힘든지역, 시작 및 도착지점으로 분리 정의
+
+ModelStats : log file 저장, Keras의 callback를 이용해 tensorboard에 정보를 연동하기 위한 함수들 정의
+
+Physics : register function (training or evalution을 진행하면서 관찰하고 싶은 정보들에 대한 meric 정의), tour_step(tour 방문 정보를 State.ipynb와 연동)
+
+ReplayMemory : replaymemory에 state, action, reward를 어떻게 저장할지 정의(DDQN이 off-policy이기에 필수적)
+
+Rewards : GridRewards의 reward를 계속 해서 합쳐줌
+
+State : agent의 모든 state 정보를 저장, 다른 모듈과 활발한 연동
+
+StateUtils :  # trianing parameters를 굉장히 많이 줄여줌(우리 환경에서는 3백만->1백만으로 1/3줄어듬), (agent는 fully observable environment가 아니라 partially observabl environment로 현재 위치에 대해 정보가 제한됨 
+=> 여러 논문에서 performance의 저하는 없고, 감소된 # training parameters로 훈련 시간을 크게 줄여들어 훈련이 가능하게 함)
+
+Trainer : training 환경 설정
+
+Utils : read_config(json file 불러옴)
+
+
+
+
+
 
 
 
