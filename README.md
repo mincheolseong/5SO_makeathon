@@ -8,4 +8,4 @@
 ![1](https://user-images.githubusercontent.com/71582651/142618075-a9f80cff-670a-40a2-947f-6bdc880cfb46.jpg)
 * I had the opportunity to give a lecture on our algorithm to the principals and about 30 captains of the Information and Communication School.
 
-[실리콘밸리 지원증서.pdf](https://github.com/mincheolseong/5SO_makeathon/files/8581474/default.pdf)
+![4e8694d0-1958-4b48-ace4-08ec378dfb8a hwp-0001](https://user-images.githubusercontent.com/71582651/165723389-560cec5e-a906-460e-9f37-614dd4ec630b.png)
